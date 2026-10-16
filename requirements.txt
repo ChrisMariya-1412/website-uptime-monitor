@@ -1,0 +1,7 @@
+streamlit
+pandas
+plotly
+requests
+pytest
+black
+flake8
