@@ -1,4 +1,3 @@
-
 from monitor import check_website
 
 

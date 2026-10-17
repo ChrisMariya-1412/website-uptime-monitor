@@ -20,15 +20,11 @@ def check_website(url):
         response = requests.get(url, timeout=10)
 
         result["status_code"] = response.status_code
-        result["latency_ms"] = round(
-            (time.perf_counter() - start) * 1000, 2
-        )
+        result["latency_ms"] = round((time.perf_counter() - start) * 1000, 2)
         result["is_up"] = response.status_code < 500
 
     except requests.RequestException as exc:
-        result["latency_ms"] = round(
-            (time.perf_counter() - start) * 1000, 2
-        )
+        result["latency_ms"] = round((time.perf_counter() - start) * 1000, 2)
         result["error"] = str(exc)
 
     return result
