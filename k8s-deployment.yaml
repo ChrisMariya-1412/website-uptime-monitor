@@ -1,0 +1,40 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-monitor
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: website-monitor
+  template:
+    metadata:
+      labels:
+        app: website-monitor
+    spec:
+      containers:
+        - name: website-uptime-monitor
+          image: ghcr.io/chrismariya-1412/website-uptime-monitor:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8501
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 20
+            periodSeconds: 20
