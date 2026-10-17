@@ -14,7 +14,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("🌐 Website Uptime & Latency Monitor")
+st.title("🌐 Website Uptime & Latency Monitor 1.0")
 st.write("Check website availability and track response times.")
 
 # Load previous monitoring results
