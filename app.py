@@ -1,12 +1,10 @@
 import os
-from datetime import datetime, timezone
 
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 
 from monitor import check_website
-
 
 DATA_FILE = "monitoring_history.csv"
 
@@ -77,9 +75,7 @@ if not history.empty:
     col2.metric("Recorded Uptime", f"{uptime:.1f}%")
     col3.metric(
         "Latest Response Time",
-        f"{latest_latency:.2f} ms"
-        if pd.notna(latest_latency)
-        else "Unavailable",
+        f"{latest_latency:.2f} ms" if pd.notna(latest_latency) else "Unavailable",
     )
 
     st.dataframe(history, width="stretch")
